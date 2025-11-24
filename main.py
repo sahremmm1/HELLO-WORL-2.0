@@ -1,5 +1,3 @@
-import os
-os.environ['TCL_LIBRARY'] = r'C:\Users\OULEXBEEN\AppData\Local\Programs\Python\Python313\tcl\tcl8.6'
 import tkinter as tk
 from tkinter import simpledialog
 from PIL import Image, ImageTk
@@ -10,14 +8,15 @@ class TurtleGame:
         self.master.title("Игра про человека")
 
         # Запрос размера поля у пользователя
-        self.field_size = simpledialog.askinteger("Размер поля", "Введите размер поля (например, 20):", minvalue=10, maxvalue=100)
+        self.field_size = simpledialog.askinteger("Размер поля", "Введите размер поля (например, 20):", minvalue=10,
+                                                  maxvalue=100)
         if not self.field_size:
             self.field_size = 20  # Значение по умолчанию
 
-        # Создаем холст
+        # Создаем холст с темносиним фоном
         self.canvas_size = 400
         self.cell_size = self.canvas_size // self.field_size
-        self.canvas = tk.Canvas(self.master, width=self.canvas_size, height=self.canvas_size, bg='white')
+        self.canvas = tk.Canvas(self.master, width=self.canvas_size, height=self.canvas_size, bg='#000080')  # темно-синий
         self.canvas.pack()
 
         # Загружаем изображение человека
@@ -39,13 +38,10 @@ class TurtleGame:
         self.master.bind('<Right>', self.move_right)
 
     def draw_person(self):
-        # Удаляем предыдущего человека
         if self.image_id:
             self.canvas.delete(self.image_id)
-        # Вычисляем координаты
         x = self.pos[1] * self.cell_size + self.cell_size // 2
         y = self.pos[0] * self.cell_size + self.cell_size // 2
-        # Рисуем изображение
         self.image_id = self.canvas.create_image(x, y, image=self.person_tk)
 
     def move_up(self, event):
@@ -63,7 +59,6 @@ class TurtleGame:
     def update_position(self, delta_row, delta_col):
         new_row = self.pos[0] + delta_row
         new_col = self.pos[1] + delta_col
-        # Проверка границ
         if 0 <= new_row < self.field_size and 0 <= new_col < self.field_size:
             self.pos = [new_row, new_col]
             self.draw_person()
