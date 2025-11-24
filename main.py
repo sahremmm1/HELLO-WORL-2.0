@@ -1,3 +1,5 @@
+import os
+os.environ['TCL_LIBRARY'] = r'C:\Users\OULEXBEEN\AppData\Local\Programs\Python\Python313\tcl\tcl8.6'
 import tkinter as tk
 from tkinter import simpledialog, messagebox
 from PIL import Image, ImageTk
@@ -153,7 +155,7 @@ class TurtleGame:
     def check_collision(self):
         if self.pos == self.ghost_pos:
             self.game_over = True
-            messagebox.showinfo("Конец игры", "Призрак поймал вас! Игра окончена.")
+            messagebox.showinfo("Конец игры", "Любовь Александровна вас поймала. Быстро делать дз!")
 
 if __name__ == "__main__":
     root = tk.Tk()
