@@ -1,3 +1,5 @@
+import os
+os.environ['TCL_LIBRARY'] = r'C:\Users\OULEXBEEN\AppData\Local\Programs\Python\Python313\tcl\tcl8.6'
 import tkinter as tk
 from tkinter import simpledialog
 from PIL import Image, ImageTk
@@ -8,8 +10,7 @@ class TurtleGame:
         self.master.title("Игра про человека")
 
         # Запрос размера поля у пользователя
-        self.field_size = simpledialog.askinteger("Размер поля", "Введите размер поля (например, 20):", minvalue=10,
-                                                  maxvalue=100)
+        self.field_size = simpledialog.askinteger("Размер поля", "Введите размер поля (например, 20):", minvalue=10, maxvalue=100)
         if not self.field_size:
             self.field_size = 20  # Значение по умолчанию
 
@@ -21,7 +22,6 @@ class TurtleGame:
 
         # Загружаем изображение человека
         self.person_image = Image.open("Photo.jpg")  # Укажите путь к вашему изображению
-        # Обновленная строка с ресемплированием
         self.person_image = self.person_image.resize((self.cell_size, self.cell_size), Image.Resampling.LANCZOS)
         self.person_tk = ImageTk.PhotoImage(self.person_image)
 
