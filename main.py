@@ -1,3 +1,5 @@
+import os
+os.environ['TCL_LIBRARY'] = r'C:\Users\OULEXBEEN\AppData\Local\Programs\Python\Python313\tcl\tcl8.6'
 import tkinter as tk
 from tkinter import simpledialog
 from PIL import Image, ImageTk
@@ -36,6 +38,18 @@ class TurtleGame:
         self.master.bind('<Down>', self.move_down)
         self.master.bind('<Left>', self.move_left)
         self.master.bind('<Right>', self.move_right)
+
+        # Добавляем управление клавишами WASD
+        self.master.bind('w', self.move_up)
+        self.master.bind('s', self.move_down)
+        self.master.bind('a', self.move_left)
+        self.master.bind('d', self.move_right)
+
+        # Для обработки заглавных букв (если нужно)
+        self.master.bind('W', self.move_up)
+        self.master.bind('S', self.move_down)
+        self.master.bind('A', self.move_left)
+        self.master.bind('D', self.move_right)
 
     def draw_person(self):
         if self.image_id:
